@@ -47,7 +47,36 @@
         </div>
     </div>
     <script>
-    // Escríbe aquí tu código
+        const name = document.forms['formulario']['nombre'].value;
+        const subject = document.forms['formulario']['nombre'].value;
+        const message = document.forms['formulario']['nombre'].value;
+
+        const errorName = document.querySelector('.errorNombre');
+        const errorSubject = document.querySelector('.errorAsunto');
+        const errorMessage = document.querySelector('.errorMensaje');
+
+        const form = document.getElementById('formulario');
+
+        form.addEventListener('submit', (e)=>{
+            e.preventDefault();
+            let valido = true;
+            if(name === ''){
+                valido = false;
+                errorName.innerHTML = 'El nombre es requerido.';
+            }
+            if(subject === ''){
+                valido = false;
+                errorSubject.innerHTML = 'El asunto es requerido.';
+            }
+            if(message === ''){
+                valido = false;
+                errorMessage.innerHTML = 'El mensaje es requerido.';
+            }
+            console.log(valido);
+            if(valido){
+                form.submit();
+            }
+        });
     </script>
 </body>
 
