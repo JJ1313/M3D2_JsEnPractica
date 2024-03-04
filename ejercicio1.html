@@ -47,34 +47,57 @@
         </div>
     </div>
     <script>
-        const name = document.forms['formulario']['nombre'].value;
-        const subject = document.forms['formulario']['nombre'].value;
-        const message = document.forms['formulario']['nombre'].value;
+       
 
-        const errorName = document.querySelector('.errorNombre');
-        const errorSubject = document.querySelector('.errorAsunto');
-        const errorMessage = document.querySelector('.errorMensaje');
+        const errorNombre = document.querySelector('.errorNombre');
+        const errorAsunto = document.querySelector('.errorAsunto');
+        const errorMensaje = document.querySelector('.errorMensaje');
 
         const form = document.getElementById('formulario');
 
         form.addEventListener('submit', (e)=>{
             e.preventDefault();
+
+            const nombre = document.getElementById('nombre').value;
+            const asunto = document.getElementById('asunto').value;
+            const mensaje = document.getElementById('mensaje').value;
+
             let valido = true;
-            if(name === ''){
+            const pattern = /^[A-Za-z\s]+$/; 
+            
+            errorNombre.innerHTML = '';
+            errorAsunto.innerHTML = '';
+            errorMensaje.innerHTML = '';
+            
+            if(!pattern.test(nombre)){
                 valido = false;
-                errorName.innerHTML = 'El nombre es requerido.';
+                errorNombre.innerHTML = 'Solo caracteres alfabeticos';
             }
-            if(subject === ''){
+            if(!pattern.test(asunto)){
                 valido = false;
-                errorSubject.innerHTML = 'El asunto es requerido.';
+                errorAsunto.innerHTML = 'Solo caracteres alfabeticos';
             }
-            if(message === ''){
+            if(!pattern.test(mensaje)){
                 valido = false;
-                errorMessage.innerHTML = 'El mensaje es requerido.';
+                errorMensaje.innerHTML = 'Solo caracteres alfabeticos';
             }
-            console.log(valido);
+
+            if(nombre === ''){
+                valido = false;
+                errorNombre.innerHTML = 'El nombre es requerido.';
+            }
+            if(asunto === ''){
+                valido = false;
+                errorAsunto.innerHTML = 'El asunto es requerido.';
+            }
+            if(mensaje === ''){
+                valido = false;
+                errorMensaje.innerHTML = 'El mensaje es requerido.';
+            }
+
             if(valido){
-                form.submit();
+                console.log('valido');
+                console.log(document.forms['formulario']);
             }
         });
     </script>

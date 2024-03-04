@@ -35,7 +35,13 @@
     </div>
 </div>
     <script>
-    // Escríbe aquí tu código
+        const caja = document.getElementById('caja');
+        const botones = document.querySelectorAll('button');
+        botones.forEach((boton)=>{
+            boton.addEventListener('click', ()=>{
+                caja.style.backgroundColor = boton.style.backgroundColor;
+            });
+        });
     </script>
 </body>
 
