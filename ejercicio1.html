@@ -48,57 +48,59 @@
     </div>
 
     <script>
-        const errorNombre = document.querySelector('.errorNombre');
-        const errorAsunto = document.querySelector('.errorAsunto');
-        const errorMensaje = document.querySelector('.errorMensaje');
-
         const form = document.getElementById('formulario');
 
-        form.addEventListener('submit', (e)=>{
-            e.preventDefault();
+        form.addEventListener('submit', (event)=>{
+            event.preventDefault();
 
             const nombre = document.getElementById('nombre').value;
             const asunto = document.getElementById('asunto').value;
             const mensaje = document.getElementById('mensaje').value;
 
-            let valido = true;
-            const pattern = /^[A-Za-z\s]+$/; 
-            
-            errorNombre.innerHTML = '';
-            errorAsunto.innerHTML = '';
-            errorMensaje.innerHTML = '';
-            
-            if(!pattern.test(nombre)){
-                valido = false;
-                errorNombre.innerHTML = 'Solo caracteres alfabeticos';
-            }
-            if(!pattern.test(asunto)){
-                valido = false;
-                errorAsunto.innerHTML = 'Solo caracteres alfabeticos';
-            }
-            if(!pattern.test(mensaje)){
-                valido = false;
-                errorMensaje.innerHTML = 'Solo caracteres alfabeticos';
-            }
+            limpiarMensajes();
 
-            if(nombre === ''){
-                valido = false;
-                errorNombre.innerHTML = 'El nombre es requerido.';
-            }
-            if(asunto === ''){
-                valido = false;
-                errorAsunto.innerHTML = 'El asunto es requerido.';
-            }
-            if(mensaje === ''){
-                valido = false;
-                errorMensaje.innerHTML = 'El mensaje es requerido.';
-            }
-
-            if(valido){
+            if(esValido(nombre, asunto, mensaje)){
                 alert("Submit: datos validos");
                 form.submit();
             }
         });
+
+        const esValido = (name, subject, message) => {
+            let valido = true;
+            const pattern = /^[A-Za-z\s]+$/; 
+            
+            if(!pattern.test(name)){
+                valido = false;
+                document.querySelector('.errorNombre').innerHTML = 'Solo caracteres alfabeticos';
+            }
+            if(!pattern.test(subject)){
+                valido = false;
+                document.querySelector('.errorAsunto').innerHTML = 'Solo caracteres alfabeticos';
+            }
+            if(!pattern.test(message)){
+                valido = false;
+                document.querySelector('.errorMensaje').innerHTML = 'Solo caracteres alfabeticos';
+            }
+
+            if(name === ''){
+                valido = false;
+                document.querySelector('.errorNombre').innerHTML = 'El nombre es requerido.';
+            }
+            if(subject === ''){
+                valido = false;
+                document.querySelector('.errorAsunto').innerHTML = 'El asunto es requerido.';
+            }
+            if(message === ''){
+                valido = false;
+                document.querySelector('.errorMensaje').innerHTML = 'El mensaje es requerido.';
+            }
+            return valido;
+        }
+        const limpiarMensajes = () => {
+            document.querySelector('.errorNombre').innerHTML = '';
+            document.querySelector('.errorAsunto').innerHTML = '';
+            document.querySelector('.errorMensaje').innerHTML = '';
+        }
     </script>
 </body>
 
