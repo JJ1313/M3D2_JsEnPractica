@@ -46,9 +46,8 @@
             </form>
         </div>
     </div>
-    <script>
-       
 
+    <script>
         const errorNombre = document.querySelector('.errorNombre');
         const errorAsunto = document.querySelector('.errorAsunto');
         const errorMensaje = document.querySelector('.errorMensaje');
@@ -96,8 +95,8 @@
             }
 
             if(valido){
-                console.log('valido');
-                console.log(document.forms['formulario']);
+                alert("Submit: datos validos");
+                form.submit();
             }
         });
     </script>
